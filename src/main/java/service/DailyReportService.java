@@ -11,8 +11,8 @@ import java.util.List;
 public class DailyReportService {
     private static DailyReportService dailyReportService;
     private SessionFactory sessionFactory;
-    private Long earnings;
-    private Long cars;
+    private Long earnings = 0L;
+    private Long cars = 0L;
 
     private DailyReportService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -29,25 +29,18 @@ public class DailyReportService {
         return new DailyReportDao(sessionFactory.openSession());
     }
 
-    public Long getTotalSoldCars() {
-        return cars;
-    }
-
-    public Long getTotalEarnings() {
-        return earnings;
-    }
-
     public List<DailyReport> getAllDailyReports() {
         return getDailyReportDAO().getAllDailyReport();
     }
 
     public void closingDay() {
-        getDailyReportDAO().addReport(new DailyReport(getTotalEarnings(), getTotalSoldCars()));
+        getDailyReportDAO().addReport(new DailyReport(earnings, cars));
+        cars = 0L;
+        earnings = 0L;
     }
 
     public DailyReport getLastReport() {
-        int size = getAllDailyReports().size();
-        return getDailyReportDAO().getAllDailyReport().get(size);
+        return getDailyReportDAO().getAllDailyReport().get(getAllDailyReports().size() - 1);
     }
 
     public void deleteAllReports() {

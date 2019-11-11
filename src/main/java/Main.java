@@ -27,7 +27,7 @@ public class Main {
         Server server = new Server(8080);
         server.setHandler(contextHandler);
         server.start();
-        CarService carService = CarService.getInstance();
+     /*   CarService carService = CarService.getInstance();
         DailyReportService dailyReportService = DailyReportService.getInstance();
         Car car1 = new Car("brand1", "model1", "licensePlate1", 111L);
         Car car2 = new Car("brand2", "model2", "licensePlate2", 222L);
@@ -35,7 +35,12 @@ public class Main {
         carService.addCar(car1);
         carService.addCar(car2);
         carService.addCar(car3);
+        dailyReportService.buyCar("brand1", "model1", "licensePlate1");
+        dailyReportService.closingDay();
+        dailyReportService.buyCar("brand2", "model2", "licensePlate2");
+        dailyReportService.buyCar("brand3", "model3", "licensePlate3");
+        dailyReportService.closingDay();
+        System.out.println(dailyReportService.getLastReport().getSoldCars());*/
         server.join();
-
     }
 }

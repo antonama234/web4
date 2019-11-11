@@ -43,4 +43,8 @@ public class CarService {
     public List<Car> getAllCars() {
         return getCarDao().getAllCars();
     }
+
+    public void removeAll() {
+        getCarDao().deleteAllCars();
+    }
 }

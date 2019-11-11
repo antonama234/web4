@@ -30,7 +30,7 @@ public class DBHelper {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Car.class);
         configuration.addAnnotatedClass(DailyReport.class);
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/db_example");
         configuration.setProperty("hibernate.connection.username", "root");
