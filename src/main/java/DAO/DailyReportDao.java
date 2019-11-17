@@ -4,6 +4,7 @@ import model.DailyReport;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class DailyReportDao {
@@ -33,5 +34,14 @@ public class DailyReportDao {
         session.createQuery("DELETE FROM DailyReport").executeUpdate();
         transaction.commit();
         session.close();
+    }
+
+    public DailyReport last() {
+        Transaction transaction = session.beginTransaction();
+        BigInteger id = (BigInteger) session.createQuery("select max (day.id) from DailyReport day");
+        DailyReport report = (DailyReport) session.createQuery("from DailyReport where id=:id").setParameter("id", id);
+        transaction.commit();
+        session.close();
+        return report;
     }
 }

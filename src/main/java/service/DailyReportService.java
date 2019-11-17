@@ -40,6 +40,7 @@ public class DailyReportService {
     }
 
     public DailyReport getLastReport() {
+   //     return getDailyReportDAO().last();
         return getDailyReportDAO().getAllDailyReport().get(getAllDailyReports().size() - 1);
     }
 
